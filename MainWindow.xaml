@@ -50,10 +50,11 @@
                 <TextBlock Text="Component:" Foreground="White" VerticalAlignment="Center"/>
                 <ComboBox ItemsSource="{Binding ComponentTypes}"
                          SelectedItem="{Binding SelectedComponentType}"
-                         Width="120" Margin="5,0"/>
+                         Width="240" Margin="5,0" VerticalAlignment="Center"/>
+                <Rectangle Width="10"/>
                 <Button Content="🔍 Load" Command="{Binding LoadComponentsCommand}"/>
                 <Button Content="🔄 Refresh" Command="{Binding RefreshCommand}"/>
-                <Rectangle Width="20"/>
+                <Rectangle Width="15"/>
                 <Button Content="💾 Save Default" Command="{Binding SaveDefaultCommand}"/>
                 <Button Content="🚀 Apply Selected" Command="{Binding ApplyToSelectedFilesCommand}"/>
             </StackPanel>
