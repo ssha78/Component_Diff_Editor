@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(dotnet build)",
+      "Bash(dotnet run:*)",
+      "Bash(dotnet restore:*)",
+      "Bash(dotnet test:*)",
+      "Bash(dotnet clean:*)",
+      "Bash(tasklist:*)",
+      "Bash(powershell:*)",
+      "Bash(dir)",
+      "Bash(./MillingScriptEditor.WPF.exe)",
+      "Read(//c/Huvitz/Lilivis/L-CAM_1.3.0/script/**)",
+      "Bash(taskkill:*)",
+      "Bash(start:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

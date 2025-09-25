@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+    <PackageReference Include="AvalonEdit" Version="6.3.0.90" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Tools\**" />
+    <Compile Remove="Tools\**" />
+    <EmbeddedResource Remove="Tools\**" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,1804 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<script>
+    <units>metric</units>
+    <machdef>..\Machines\5axHeadHead\5axHeadHead.xml</machdef>
+    <cycle type="silhouette_builder" name="prof_a">
+        <machsim_export>
+            <workpiece>
+                <name>coping</name>
+            </workpiece>
+            <stock>
+                <name>blank</name>
+            </stock>
+        </machsim_export>
+        <silhouette_mesh>coping</silhouette_mesh>
+        <silhouette_type>part_end_height</silhouette_type>
+        <silhouette_tolerance>0.01</silhouette_tolerance>
+        <silhouette_offset>0</silhouette_offset>
+        <tool>
+            <external>02</external>
+        </tool>
+        <machining_direction y="0" z="1" x="0"/>
+        <tool_direction y="0" z="1" x="0"/>
+    </cycle>
+    <cycle type="silhouette_builder" name="prof_blank">
+        <silhouette_mesh>blank</silhouette_mesh>
+        <silhouette_type>part_end_height</silhouette_type>
+        <silhouette_tolerance>0.01</silhouette_tolerance>
+        <silhouette_offset>0.0</silhouette_offset>
+        <tool>
+            <external>02</external>
+        </tool>
+        <machining_direction y="0" z="1" x="0"/>
+        <tool_direction y="0" z="1" x="0"/>
+    </cycle>
+
+    <cycle name="Roughing Cavity side linear HSM">
+        <skip_nc>false</skip_nc>
+        <variable value="4" name="post_settings_id"/>
+        <post_process_only>false</post_process_only>
+        <variable value="0" name="IsT1T3Side"/>
+        <variable name="CoolantIsT1T4" value="0"/>
+        <variable name="WingsCreatorVersion" value="1" />
+        <wing>
+			<width>3</width>
+			<inside_offset>0.05</inside_offset>
+			<tolerance>0.01</tolerance>
+			<silhouette_tool_diameter>1.4</silhouette_tool_diameter>
+			<wing_tool>
+				<external>02</external>
+			</wing_tool>
+            <main_mesh>coping</main_mesh>
+            <pins_mesh>pins</pins_mesh>
+            <top_direction y="0" z="-1" x="0" />
+            <wings_mesh_name>New_wings_cavity</wings_mesh_name>
+            <bottom_external>true</bottom_external>
+            <create_wings_on_middle_of_vertical_wall>true</create_wings_on_middle_of_vertical_wall>
+        </wing>
+        <rates>
+            <feed>1030</feed>
+            <plunge>800</plunge>
+            <retract>800</retract>
+			
+			<up_percentage>100.0</up_percentage>
+			<down_percentage>90.0</down_percentage>	
+        </rates>
+        <feed_rate_advanced>
+            <use_rapid_feed>true</use_rapid_feed>
+            <rapid_feed_rate>800</rapid_feed_rate>
+            <use_feed_control_zone>true</use_feed_control_zone>
+            <feed_control_zone>
+				<offset>0.2</offset>
+				<inside_feed_rate_percentage>80</inside_feed_rate_percentage>
+				<outside_feed_rate_percentage>100</outside_feed_rate_percentage>
+				<geometry>
+					<name>pins</name>
+				</geometry>
+            </feed_control_zone>
+        </feed_rate_advanced>
+        <tool>
+            <external>02</external>
+        </tool>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>false</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_surf>pins</check_surf>
+            <strategy>retract_along_tool_axis</strategy>
+            <check_between_points>true</check_between_points>
+            <check_links_collide>true</check_links_collide>
+            <tolerance>0.01</tolerance>
+            <thickness>0</thickness>
+            <clearance_shaft>0</clearance_shaft>
+            <clearance_arbor>0</clearance_arbor>
+            <clearance_holder>0</clearance_holder>
+		</gouge_check>
+		<gouge_check>
+			<status>true</status>
+			<check_flute>false</check_flute>
+			<check_shaft>true</check_shaft>
+			<check_arbor>false</check_arbor>
+			<check_holder>true</check_holder>
+			<check_surf>coping</check_surf>
+			<check_surf>drops</check_surf>
+			<check_surf>pins</check_surf>
+			<strategy>leave_out_points</strategy>
+			<check_between_points>true</check_between_points>
+		</gouge_check>
+        <cut_tolerance>0.01</cut_tolerance>
+        <offset>0.04</offset>
+        <extrude_mesh>
+            <type>linear_extrude</type>
+            <name>flat_mesh</name>
+            <curve_3d>
+                <name>extrude_curve</name>
+            </curve_3d>
+            <extrude_direction y="0" z="0" x="1"/>
+            <project_direction y="0" z="1" x="0"/>
+            <positive_distance>10</positive_distance>
+            <negative_distance>10</negative_distance>
+        </extrude_mesh>    
+        <mach_surf>
+            <name>flat_mesh</name>
+            <move>new_wings_cavity_max_vert_z+0.65</move>
+            <avoid_vertical_walls>true</avoid_vertical_walls>
+            <containment_2d_tolerance>0.01</containment_2d_tolerance>
+            <containment>
+				<name>prof_a</name>
+				<offset>-0.7</offset>
+				<hole>true</hole>
+            </containment>
+            <containment>
+				<name>prof_a</name>
+				<offset>40</offset>
+				<hole>false</hole>
+            </containment>
+        </mach_surf>
+        <mach_surf>
+            <name>coping</name>
+        </mach_surf>
+        <mach_surf>
+            <name>pins</name>
+        </mach_surf>
+		<caps>
+			 <name>crown_caps</name>
+			 <tolerance>0.1</tolerance>
+			 <access_mesh_from_other_cycles>true</access_mesh_from_other_cycles>
+			 <main_mesh>coping</main_mesh>
+			 <boundary>
+				 <curve_3d>
+					 <name>C</name>
+				 </curve_3d>
+			 </boundary>
+		 </caps>
+		 <mach_surf>
+			<name>crown_caps</name>
+		 </mach_surf>
+		<margin_protection>
+			<name>coping</name>
+			<containment_3d>
+				<name>C</name>
+			</containment_3d>
+			<patch_left>0.15</patch_left>
+			<patch_right>0.15</patch_right>
+			<margin_mesh_name>margin_protection_mesh</margin_mesh_name>
+		</margin_protection>
+		<mach_surf>
+			<name>margin_protection_mesh</name>
+			<move>-0.15</move>
+		</mach_surf>
+        <machining_direction y="0" z="-1" x="0"/>
+        <tool_direction y="0" z="-1" x="0"/>
+        <pattern>
+            <manual_curve>
+				<name>extrude_curve</name>
+				<point y="blank_min_vert_y-4" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x"/>
+				<point y="pins_max_vert_y+2" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x"/>
+            </manual_curve>
+            <hsm_cuts_only>true</hsm_cuts_only>
+            <high_speed_mode>true</high_speed_mode>
+            <hsm_cc_up_scale_factor>2.0</hsm_cc_up_scale_factor>
+            <hsm_cc_down_scale_factor>0.8</hsm_cc_down_scale_factor>
+            <hsm_force_flowing_value>4</hsm_force_flowing_value>
+            <hsm_project_auto_generate>bottom</hsm_project_auto_generate>
+            <hsm_is_collapse_only_from_drive_curve>true</hsm_is_collapse_only_from_drive_curve>
+            <hsm_filter_length_factor>1.5</hsm_filter_length_factor>
+            <type>ConstantCusp</type>
+            <stepover>0.05</stepover>
+            <start_point>
+				<selection_type>use_none</selection_type>
+				<shift_value>0.05</shift_value>
+            </start_point>
+            <manual_curve>
+				<name>containment_curve2</name>
+				<point y="coping_max_vert_y+0.80" z="0" x="blank_max_vert_x+4"/>
+				<point y="coping_max_vert_y+50" z="0" x="blank_max_vert_x+4"/>
+				<point y="coping_max_vert_y+50" z="0" x="blank_min_vert_x-4"/>
+				<point y="coping_max_vert_y+0.80" z="0" x="blank_min_vert_x-4"/>
+				<point y="coping_max_vert_y+0.80" z="0" x="blank_max_vert_x+4"/>
+            </manual_curve>
+            <containment>
+				<name>containment_curve2</name>
+				<hole>true</hole>
+            </containment>
+			<manual_curve>
+				<name>machining_area</name>
+				<point x="blank_max_vert_x+0.9" y="blank_min_vert_y-1.3" z="0"/>
+				<point x="blank_min_vert_x-0.9" y="blank_min_vert_y-1.3" z="0"/>
+				<point x="blank_min_vert_x-0.9" y="blank_max_vert_y+5" z="0"/>
+				<point x="blank_max_vert_x+0.9" y="blank_max_vert_y+5" z="0"/>
+				<point x="blank_max_vert_x+0.9" y="blank_min_vert_y-1.3" z="0"/>
+            </manual_curve>
+            <containment>
+				<name>machining_area</name>
+				<offset>0.0</offset>
+				<hole>false</hole>
+            </containment>
+            <cut_order>standard</cut_order>
+            <cut_method>zigzag</cut_method>
+            <hsm_pin_start_y>coping_max_vert_y</hsm_pin_start_y>
+            <hsm_pin_stepover>0.042</hsm_pin_stepover>
+            <!-- <research_param value="900" name="MaxFeedRateAlongY"/>  -->
+            <!-- <research_param value="920" name="MaxFeedRateAlongX"/> -->
+            <research_param value="930" name="MaxFeedRateAlongZ"/>
+        </pattern>
+        <!-- links parameters -->
+        <link>
+            <distances>
+				<clearance_area>
+					<height>blank_max_mach+7.5</height>
+					<direction y="0" z="-1" x="0"/>
+				</clearance_area>
+				<rapid>10</rapid>
+				<feed>0.2</feed>
+				<air>0.5</air>
+            </distances>
+            <first_entry>
+                    <type>clearance_area</type>
+            </first_entry>
+            <last_exit>
+                    <type>clearance_area</type>
+            </last_exit>
+            <gaps_along_cut>
+				<small>
+					<type>direct</type>
+				</small>
+				<large>
+					<type>follow_surfaces</type>
+				</large>
+				<size>3</size>
+            </gaps_along_cut>
+            <links_between_slice>
+				<small>
+					<type>follow_surfaces</type>
+				</small>
+				<large>
+					<type>clearance_area</type>
+				</large>
+				<size>3</size>
+            </links_between_slice>
+            <links_between_pass>
+				<small>
+					<type>direct</type>
+				</small>
+				<large>
+					<type>clearance_area</type>
+				</large>
+				<size>3</size>
+            </links_between_pass>
+        </link>
+        <tool_axis>&#xd;&#xd;&#xd;
+        -&#xd;&#xd;&#xd;
+        <out_type>3axis</out_type>
+        </tool_axis>
+        <spindle_speed>30000</spindle_speed>
+    </cycle>
+	
+	<cycle name="Roughing Cavity side linear HSM2">
+        <skip_nc>false</skip_nc>
+        <variable value="4" name="post_settings_id"/>
+        <post_process_only>false</post_process_only>
+        <variable value="0" name="IsT1T3Side"/>
+        <variable name="CoolantIsT1T4" value="0"/>
+        <variable name="WingsCreatorVersion" value="1" />
+        <wing>
+			<width>3</width>
+			<inside_offset>0.05</inside_offset>
+			<tolerance>0.01</tolerance>
+			<silhouette_tool_diameter>1.4</silhouette_tool_diameter>
+			<wing_tool>
+				<external>02</external>
+			</wing_tool>
+            <main_mesh>coping</main_mesh>
+            <pins_mesh>pins</pins_mesh>
+            <top_direction y="0" z="-1" x="0" />
+            <wings_mesh_name>New_wings_cavity</wings_mesh_name>
+            <bottom_external>true</bottom_external>
+            <create_wings_on_middle_of_vertical_wall>true</create_wings_on_middle_of_vertical_wall>
+        </wing>
+        <rates>
+            <feed>1040</feed>
+            <plunge>800</plunge>
+            <retract>800</retract>
+			
+			<up_percentage>100.0</up_percentage>
+			<down_percentage>90.0</down_percentage>	
+        </rates>
+        <feed_rate_advanced>
+            <use_rapid_feed>true</use_rapid_feed>
+            <rapid_feed_rate>800</rapid_feed_rate>
+            <use_feed_control_zone>true</use_feed_control_zone>
+            <feed_control_zone>
+				<offset>0.2</offset>
+				<inside_feed_rate_percentage>75</inside_feed_rate_percentage>
+				<outside_feed_rate_percentage>100</outside_feed_rate_percentage>
+				<geometry>
+					<name>pins</name>
+				</geometry>
+            </feed_control_zone>
+        </feed_rate_advanced>
+        <tool>
+            <external>02</external>
+        </tool>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>false</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_surf>pins</check_surf>
+            <strategy>retract_along_tool_axis</strategy>
+            <check_between_points>true</check_between_points>
+            <check_links_collide>true</check_links_collide>
+            <tolerance>0.01</tolerance>
+            <thickness>0</thickness>
+            <clearance_shaft>0</clearance_shaft>
+            <clearance_arbor>0</clearance_arbor>
+            <clearance_holder>0</clearance_holder>
+		</gouge_check>
+		<gouge_check>
+			<status>true</status>
+			<check_flute>false</check_flute>
+			<check_shaft>true</check_shaft>
+			<check_arbor>false</check_arbor>
+			<check_holder>true</check_holder>
+			<check_surf>coping</check_surf>
+			<check_surf>drops</check_surf>
+			<check_surf>pins</check_surf>
+			<strategy>leave_out_points</strategy>
+			<check_between_points>true</check_between_points>
+		</gouge_check>
+        <cut_tolerance>0.003</cut_tolerance>
+        <offset>0.0</offset>
+        <extrude_mesh>
+            <type>linear_extrude</type>
+            <name>flat_mesh</name>
+            <curve_3d>
+                <name>extrude_curve</name>
+            </curve_3d>
+            <extrude_direction y="0" z="0" x="1"/>
+            <project_direction y="0" z="1" x="0"/>
+            <positive_distance>10</positive_distance>
+            <negative_distance>10</negative_distance>
+        </extrude_mesh>    
+		<!--
+        <mach_surf>
+            <name>flat_mesh</name>
+            <move>new_wings_cavity_max_vert_z+1.065</move>
+            <avoid_vertical_walls>true</avoid_vertical_walls>
+            <containment_2d_tolerance>0.01</containment_2d_tolerance>
+            <containment>
+				<name>prof_a</name>
+				<offset>-0.7</offset>
+				<hole>true</hole>
+            </containment>
+            <containment>
+				<name>prof_a</name>
+				<offset>40</offset>
+				<hole>false</hole>
+            </containment>
+        </mach_surf>
+		-->
+		<mach_surf>
+			<name>New_wings_cavity</name>
+			<move>0.6</move>
+		</mach_surf>
+        <mach_surf>
+            <name>coping</name>
+        </mach_surf>
+        <mach_surf>
+            <name>pins</name>
+        </mach_surf>
+        <machining_direction y="0" z="-1" x="0"/>
+        <tool_direction y="0" z="-1" x="0"/>
+        <pattern>
+            <manual_curve>
+				<name>extrude_curve</name>
+				<point y="blank_min_vert_y-4" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x"/>
+				<point y="pins_max_vert_y+2" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x"/>
+            </manual_curve>
+            <hsm_cuts_only>true</hsm_cuts_only>
+            <high_speed_mode>true</high_speed_mode>
+            <hsm_cc_up_scale_factor>1.80</hsm_cc_up_scale_factor>
+            <hsm_cc_down_scale_factor>0.8</hsm_cc_down_scale_factor>
+            <hsm_force_flowing_value>4</hsm_force_flowing_value>
+            <hsm_project_auto_generate>bottom</hsm_project_auto_generate>
+            <hsm_is_collapse_only_from_drive_curve>true</hsm_is_collapse_only_from_drive_curve>
+            <hsm_filter_length_factor>1.5</hsm_filter_length_factor>
+            <type>ConstantCusp</type>
+            <stepover>0.045</stepover>
+            <start_point>
+				<selection_type>use_none</selection_type>
+				<shift_value>0.045</shift_value>
+            </start_point>
+			<manual_curve>
+				<name>containment_curve2</name>
+				<point y="coping_max_vert_y+0.75" z="0" x="blank_max_vert_x+4"/>
+				<point y="coping_max_vert_y+50" z="0" x="blank_max_vert_x+4"/>
+				<point y="coping_max_vert_y+50" z="0" x="blank_min_vert_x-4"/>
+				<point y="coping_max_vert_y+0.75" z="0" x="blank_min_vert_x-4"/>
+				<point y="coping_max_vert_y+0.75" z="0" x="blank_max_vert_x+4"/>
+			</manual_curve>
+
+			<containment>
+				<name>containment_curve2</name>
+				<hole>true</hole>
+			</containment>
+
+			<containment>
+				<name>prof_a</name>
+				<offset>0.04</offset>
+				<hole>false</hole>
+			</containment>
+            <cut_order>standard</cut_order>
+            <cut_method>zigzag</cut_method>
+            <hsm_pin_start_y>coping_max_vert_y</hsm_pin_start_y>
+            <hsm_pin_stepover>0.045</hsm_pin_stepover>
+            <!-- <research_param value="900" name="MaxFeedRateAlongY"/>  -->
+            <!--<research_param value="910" name="MaxFeedRateAlongX"/>-->
+            <research_param value="910" name="MaxFeedRateAlongZ"/>
+        </pattern>
+        <!-- links parameters -->
+        <link>
+            <distances>
+				<clearance_area>
+					<height>blank_max_mach+7.5</height>
+					<direction y="0" z="-1" x="0"/>
+				</clearance_area>
+				<rapid>10</rapid>
+				<feed>0.2</feed>
+				<air>0.5</air>
+            </distances>
+            <first_entry>
+                    <type>clearance_area</type>
+            </first_entry>
+            <last_exit>
+                    <type>clearance_area</type>
+            </last_exit>
+            <gaps_along_cut>
+				<small>
+					<type>direct</type>
+				</small>
+				<large>
+					<type>follow_surfaces</type>
+				</large>
+				<size>3</size>
+            </gaps_along_cut>
+            <links_between_slice>
+				<small>
+					<type>follow_surfaces</type>
+				</small>
+				<large>
+					<type>clearance_area</type>
+				</large>
+				<size>3</size>
+            </links_between_slice>
+            <links_between_pass>
+				<small>
+					<type>direct</type>
+				</small>
+				<large>
+					<type>clearance_area</type>
+				</large>
+				<size>3</size>
+            </links_between_pass>
+        </link>
+        <tool_axis>&#xd;&#xd;&#xd;
+        -&#xd;&#xd;&#xd;
+        <out_type>3axis</out_type>
+        </tool_axis>
+        <spindle_speed>30000</spindle_speed>
+    </cycle>
+	
+     <!-- <cycle name="Rest Rough Cavity">
+          <skip_nc>false</skip_nc>
+          <post_process_only>false</post_process_only>
+          <variable value="1" name="post_settings_id"/>
+          <variable value="1" name="IsT1T3Side"/>
+          <variable name="CoolantIsT1T4" value="0"/>
+          <rates>
+               <feed>200</feed>
+               <plunge>200</plunge>
+               <retract>200</retract>
+          </rates>
+          <feed_rate_advanced>
+               <use_rapid_feed>true</use_rapid_feed>
+               <rapid_feed_rate>200</rapid_feed_rate>
+          </feed_rate_advanced>
+          <tool>
+               <external>06</external>
+          </tool>
+          <gouge_check>
+               <status>true</status>
+               <check_flute>true</check_flute>
+               <check_shaft>true</check_shaft>
+               <check_surf>pins</check_surf>
+               <strategy>retract_along_tool_axis</strategy>
+               <check_between_points>true</check_between_points>
+               <check_links_collide>true</check_links_collide>
+               <check_links_containment>true</check_links_containment>
+               <tolerance>0.01</tolerance>
+               <thickness>0</thickness>
+               <clearance_shaft>0</clearance_shaft>
+               <clearance_arbor>0</clearance_arbor>
+               <clearance_holder>0</clearance_holder>
+          </gouge_check>
+          <gouge_check>
+               <status>true</status>
+               <check_flute>true</check_flute>
+               <check_shaft>true</check_shaft>
+               <check_arbor>false</check_arbor>
+               <check_holder>true</check_holder>
+               <check_surf>coping</check_surf>
+               <check_surf>drops</check_surf>
+               <check_surf>pins</check_surf>
+               <check_surf>blank_collcheck</check_surf>
+               <strategy>leave_out_points</strategy>
+               <check_between_points>true</check_between_points>
+          </gouge_check>
+          <mach_surf>
+               <name>coping</name>
+          </mach_surf>
+          <cut_tolerance>0.003</cut_tolerance>
+          <offset>0.00</offset>
+          <use_blank>false</use_blank>
+          <affect_stock>false</affect_stock>
+          <machining_direction y="0" z="-1" x="0"/>
+          <tool_direction y="0" z="-1" x="0"/>
+          <pattern>
+               <type>ConstantCusp</type>
+               <stepover>0.015</stepover>
+               <cut_order>standard</cut_order>
+               <cut_method>one_way</cut_method>
+               <one_way_dir>climb</one_way_dir>
+               <rest_finish>true</rest_finish>
+               <rest_finish_big_dia>1.40</rest_finish_big_dia>
+               <rest_finish_big_corner_radius>0.5</rest_finish_big_corner_radius>
+               <silhouette>true</silhouette>
+               <silhouette_mode>tool_contact</silhouette_mode>
+               <silhouette_offset>-0.75</silhouette_offset>
+               <research_param value="120" name="MaxFeedRateAlongX"/>
+               <research_param value="120" name="MaxFeedRateAlongY"/>
+               <research_param value="120" name="MaxFeedRateAlongZ"/>
+          </pattern>
+          <link>
+               <distances>
+                    <clearance_area>
+                         <height>blank_max_mach+8</height>
+                         <direction y="0" z="-1" x="0"/>
+                    </clearance_area>
+                    <rapid>10</rapid>
+                    <feed>0.2</feed>
+                    <air>0.5</air>
+               </distances>
+               <first_entry>
+                    <type>clearance_area</type>
+               </first_entry>
+               <last_exit>
+                    <type>clearance_area</type>
+               </last_exit>
+               <gaps_along_cut>
+                    <small>
+                         <type>feed_distance</type>
+                    </small>
+                    <large>
+                         <type>clearance_area</type>
+                    </large>
+                    <size>3</size>
+               </gaps_along_cut>
+               <links_between_slice>
+                    <small>
+                         <type>feed_distance</type>
+                    </small>
+                    <large>
+                         <type>clearance_area</type>
+                    </large>
+                    <size>3</size>
+               </links_between_slice>
+               <links_between_pass>
+                    <small>
+                         <type>feed_distance</type>
+                    </small>
+                    <large>
+                         <type>clearance_area</type>
+                    </large>
+                    <size>3</size>
+               </links_between_pass>
+          </link>
+          <tool_axis>
+               <out_type>3axis</out_type>
+          </tool_axis>
+          <spindle_speed>30000</spindle_speed>
+     </cycle> -->
+	<!--
+    <cycle name="Cavity Fissuren finish">
+        <post_process_only>false</post_process_only>
+        <skip_nc>false</skip_nc>
+        <post_process_only>false</post_process_only>
+        <variable value="1" name="post_settings_id"/>
+        <variable value="1" name="IsT1T3Side"/>
+        <variable name="CoolantIsT1T4" value="0"/>
+        <rates>
+            <feed>450</feed>
+            <plunge>400</plunge>
+            <retract>400</retract>
+        </rates>
+        <feed_rate_advanced>
+            <use_rapid_feed>true</use_rapid_feed>
+            <rapid_feed_rate>450</rapid_feed_rate>
+        </feed_rate_advanced>
+        <tool>
+            <external>06</external>
+        </tool>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>false</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_arbor>true</check_arbor>
+            <check_surf>coping</check_surf>
+            <check_surf>pins</check_surf>
+            <check_surf>blank_collcheck</check_surf>
+            <strategy>leave_out_points</strategy>
+            <check_between_points>true</check_between_points>
+            <check_links_collide>true</check_links_collide>
+            <check_links_containment>true</check_links_containment>
+            <clearance_arbor>0.2</clearance_arbor>
+        </gouge_check>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>true</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_surf>pins</check_surf>
+            <strategy>retract_along_tool_axis</strategy>
+            <check_between_points>true</check_between_points>
+            <check_links_collide>true</check_links_collide>
+            <check_links_containment>true</check_links_containment>
+            <tolerance>0.01</tolerance>
+            <thickness>-0.01</thickness>
+            <clearance_shaft>0</clearance_shaft>
+            <clearance_arbor>0</clearance_arbor>
+            <clearance_holder>0</clearance_holder>
+        </gouge_check>
+        <cut_tolerance>0.003</cut_tolerance>
+        <offset>0.00</offset>
+        <mach_surf>
+            <name>coping</name>
+        </mach_surf>
+
+        <use_blank>false</use_blank>
+        <machining_direction y="0" z="-1" x="0"/>
+        <tool_direction y="0" z="-1" x="0"/>
+        <pattern>
+            <type>ConstantCusp</type>
+            <containment>
+                <name>B01</name>
+                <offset>-1.6</offset>
+                <hole>false</hole>
+            </containment>
+
+            <stepover>0.03</stepover>
+            <rest_finish>true</rest_finish>
+            <rest_finish_big_dia>1.4</rest_finish_big_dia>
+            <rest_finish_big_corner_radius>0.5</rest_finish_big_corner_radius>
+            <angles>
+                <start>0</start>
+                <end>90</end>
+                <range>inside</range>
+                <trim>false</trim>
+            </angles>
+            <silhouette>true</silhouette>
+            <silhouette_mode>part_silhouette</silhouette_mode>
+            <silhouette_offset>-1.66</silhouette_offset>
+            <cut_order>standard</cut_order>
+            <cut_method>one_way</cut_method>
+            <one_way_dir>climb</one_way_dir>
+        </pattern>
+        <link>
+            <distances>
+                <clearance_area>
+                    <height>blank_max_mach+2</height>
+                    <direction x="0" y="0" z="-1"/>
+                </clearance_area>
+                <rapid>20</rapid>
+                <feed>0.4</feed>
+                <air>0.7</air>
+                <home_position x="0" y="0" z="-20"/>
+            </distances>
+            <first_entry>
+                <type>clearance_area</type>
+            </first_entry>
+            <last_exit>
+                <type>clearance_area</type>
+            </last_exit>
+            <gaps_along_cut>
+                <small>
+                    <type>direct</type>
+                </small>
+                <large>
+                    <type>feed_distance</type>
+                </large>
+                <size>0.2</size>
+            </gaps_along_cut>
+            <links_between_slice>
+                <small>
+                    <type>direct</type>
+                </small>
+                <large>
+                    <type>feed_distance</type>
+                </large>
+                <size>0.2</size>
+            </links_between_slice>
+        </link>
+        <tool_axis>
+        <out_type>3axis</out_type>
+        </tool_axis>
+        <spindle_speed>30000</spindle_speed>
+    </cycle>
+
+	-->
+    <cycle name="Finishing cavity">
+        <skip_nc>false</skip_nc>
+        <variable value="1" name="post_settings_id" />
+        <post_process_only>false</post_process_only>
+        <variable value="1" name="IsT1T3Side" />
+        <variable name="CoolantIsT1T4" value="0"/>
+        <!--<variable name="WingsCreatorVersion" value="1" />-->
+        <wing>
+            <width>3</width>
+            <inside_offset>0.55</inside_offset>
+            <tolerance>0.01</tolerance>
+            <silhouette_tool_diameter>1</silhouette_tool_diameter>
+            <wing_tool>
+                <external>02</external>
+            </wing_tool>
+            <main_mesh>coping</main_mesh>
+            <pins_mesh>pins</pins_mesh>
+            <top_direction y="0" z="-1" x="0" />
+            <wings_mesh_name>New_wings_cavity</wings_mesh_name>
+            <bottom_external>true</bottom_external>
+            <create_wings_on_middle_of_vertical_wall>true</create_wings_on_middle_of_vertical_wall>
+        </wing>
+        <rates>
+            <feed>750</feed>
+            <plunge>700</plunge>
+            <retract>700</retract>
+        </rates>
+        <feed_rate_advanced>
+            <use_rapid_feed>true</use_rapid_feed>
+            <rapid_feed_rate>700</rapid_feed_rate>
+            <use_feed_control_zone>false</use_feed_control_zone>
+        </feed_rate_advanced>
+        <tool>
+            <external>06</external>
+        </tool>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>true</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_arbor>true</check_arbor>
+            <check_holder>true</check_holder>
+            <check_surf>pins</check_surf>
+            <strategy>retract_along_tool_axis</strategy>
+            <check_between_points>true</check_between_points>
+            <check_links_collide>true</check_links_collide>
+            <check_links_containment>true</check_links_containment>
+            <links_containment>
+                <name>prof_a</name>
+                <offset>1.0</offset>
+                <hole>false</hole>
+            </links_containment>
+            <tolerance>0.01</tolerance>
+            <thickness>0.0</thickness>
+        </gouge_check>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>false</check_flute>
+            <check_shaft>false</check_shaft>
+            <check_arbor>true</check_arbor>
+            <check_surf>coping</check_surf>
+            <check_surf>drops</check_surf>
+            <check_surf>blank_collcheck</check_surf>
+            <check_surf>pins</check_surf>
+            <strategy>leave_out_points</strategy>
+            <check_between_points>true</check_between_points>
+            <check_links_collide>true</check_links_collide>
+            <check_links_containment>true</check_links_containment>
+            <clearance_shaft>0</clearance_shaft>
+            <clearance_arbor>0.1</clearance_arbor>
+        </gouge_check>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>true</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_arbor>true</check_arbor>
+            <check_holder>true</check_holder>
+            <check_surf>pins</check_surf>
+            <strategy>retract_along_tool_axis</strategy>
+
+            <tolerance>0.01</tolerance>
+            <thickness>0.02</thickness>
+        </gouge_check>
+        <cut_tolerance>0.004</cut_tolerance>
+        <offset>0.0</offset>
+        <mach_surf>
+            <name>coping</name>
+        </mach_surf>
+        <!--<mach_surf>
+            <name>pins</name>
+        </mach_surf>-->
+        <mach_surf>
+            <name>new_wings_cavity</name>
+            <move>0.0</move>
+        </mach_surf>
+		<margin_protection>
+			<name>coping</name>
+			<containment_3d>
+				<name>C</name>
+			</containment_3d>
+			<patch_left>0.09</patch_left>
+			<patch_right>0.02</patch_right>
+			<margin_mesh_name>margin_protection_mesh</margin_mesh_name>
+		</margin_protection>
+		<mach_surf>
+			<name>margin_protection_mesh</name>
+			<move>-0.10</move>
+		</mach_surf>
+		<extrude_mesh>
+            <type>linear_extrude</type>
+            <name>flat_mesh</name>
+            <curve_3d>
+                <name>extrude_curve</name>
+            </curve_3d>
+            <extrude_direction y="0" z="0" x="1" />
+            <project_direction y="0" z="1" x="0" />
+            <positive_distance>10</positive_distance>
+            <negative_distance>10</negative_distance>
+        </extrude_mesh>
+        <use_blank>false</use_blank>
+        <affect_stock>true</affect_stock>
+        <machining_direction x="0" y="0" z="-1" />
+        <tool_direction x="0" y="0" z="-1" />
+
+        <pattern>
+            <manual_curve>
+                <name>extrude_curve</name>
+                <point y="blank_min_vert_y-4" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x" />
+                <point y="pins_max_vert_y+2" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x" />
+            </manual_curve>
+            <offset_direction>both</offset_direction>
+
+            <type>ConstantCusp</type>
+            <drive_curves>
+                <name>prof_a</name>
+                <offset>0.0</offset>
+                <hole>false</hole>
+            </drive_curves>
+            <!-- <drive_curves_3d>
+                <name>C</name>
+            </drive_curves_3d> -->
+            <!-- <containment>
+                <name>prof_a</name>
+                <offset>0.1</offset>
+                <hole>false</hole>
+            </containment> -->
+            <containment>
+                <name>C</name>
+                <offset>0.45</offset>
+                <hole>false</hole>
+            </containment>
+            <manual_curve>
+                <name>curve1</name>
+                <point y="coping_max_vert_y+0.5" z="0" x="blank_max_vert_x+4" />
+                <point y="coping_max_vert_y+50" z="0" x="blank_max_vert_x+4" />
+                <point y="coping_max_vert_y+50" z="0" x="blank_min_vert_x-4" />
+                <point y="coping_max_vert_y+0.5" z="0" x="blank_min_vert_x-4" />
+                <point y="coping_max_vert_y+0.5" z="0" x="blank_max_vert_x+4" />
+            </manual_curve>
+            <stepover>0.07</stepover>
+            <cut_order>from_outside_to_center</cut_order>
+            <machine_by>regions</machine_by>
+            <cc_follow_containment>true</cc_follow_containment>
+            <cut_method>one_way</cut_method>
+            <one_way_dir>climb</one_way_dir>
+            <research_param value="700" name="MaxFeedRateAlongX" />
+            <research_param value="700" name="MaxFeedRateAlongZ" />
+            <research_param value="700" name="MaxFeedRateAlongY" />
+        </pattern>
+
+        <link>
+            <distances>
+                <clearance_area>
+                        <height>blank_max_mach+5</height>
+                        <direction type="machining_direction" />
+                </clearance_area>
+                <rapid>20</rapid>
+                <feed>1.0</feed>
+                <air>1.0</air>
+            </distances>
+            <first_entry>
+                <type>clearance_area</type>
+                <lead_in>
+                    <type>vertical_tang_arc</type>
+                    <length>0.5</length>
+                    <width>0.5</width>
+                </lead_in>
+            </first_entry>
+            <last_exit>
+                <type>clearance_area</type>
+            </last_exit>
+            <gaps_along_cut>
+                <small>
+                    <type>follow_surfaces</type>
+                </small>
+                <large>
+                    <type>rapid_distance</type>
+                    <lead_in>
+                        <type>vertical_tang_arc</type>
+                        <arc_sweep>80</arc_sweep>
+                        <arc_diameter>80</arc_diameter>
+                        <feedrate>20</feedrate>
+                    </lead_in>
+                </large>
+                <size>1</size>
+            </gaps_along_cut>
+            <links_between_slice>
+                <small>
+                    <type>follow_surfaces</type>
+                </small>
+                <large>
+                    <type>feed_distance</type>
+                    <lead_in>
+                        <type>vertical_tang_arc</type>
+                        <arc_sweep>80</arc_sweep>
+                        <arc_diameter>80</arc_diameter>
+                        <feedrate>20</feedrate>
+                    </lead_in>
+                </large>
+                <size>1</size>
+            </links_between_slice>
+            <links_between_pass>
+                <small>
+                    <type>feed_distance</type>
+                </small>
+                <large>
+                    <type>feed_distance</type>
+                    <lead_in>
+                        <type>vertical_tang_arc</type>
+                        <arc_sweep>80</arc_sweep>
+                        <arc_diameter>80</arc_diameter>
+                        <feedrate>20</feedrate>
+                    </lead_in>
+                </large>
+                <size>0.2</size>
+            </links_between_pass>
+        </link>
+        <tool_axis> - <out_type>3axis</out_type>
+        </tool_axis>
+        <spindle_speed>25000</spindle_speed>
+    </cycle>
+	
+	
+    <cycle name="Roughing Occlusal side linear HSM_blank">
+        <skip_nc>false</skip_nc>
+        <variable value="4" name="post_settings_id"/>
+        <variable value="0" name="IsT1T3Side"/>
+        <variable name="CoolantIsT1T4" value="0"/>
+        <post_process_only>false</post_process_only>
+        <variable name="WingsCreatorVersion" value="2"/>
+        <wing>
+            <width>6</width>
+            <inside_offset>0.95</inside_offset>
+            <tolerance>0.01</tolerance>
+            <silhouette_tool_diameter>4</silhouette_tool_diameter>
+            <wing_tool>
+                <external>02</external>
+            </wing_tool>
+            <main_mesh>coping</main_mesh>
+            <pins_mesh>pins</pins_mesh>
+            <top_direction y="0" z="1" x="0"/>
+            <wings_mesh_name>New_wings_occlusal</wings_mesh_name>
+            <bottom_external>true</bottom_external>
+        </wing>
+        <rates>
+            <feed>1100</feed>
+            <plunge>800</plunge>
+            <retract>800</retract>
+        </rates>
+        <feed_rate_advanced>
+            <use_rapid_feed>true</use_rapid_feed>
+            <rapid_feed_rate>800</rapid_feed_rate>
+            <use_feed_control_zone>true</use_feed_control_zone>
+            <feed_control_zone>
+                <offset>0.3</offset>
+                <inside_feed_rate_percentage>40</inside_feed_rate_percentage>
+                <outside_feed_rate_percentage>100</outside_feed_rate_percentage>
+                <geometry>
+                    <name>pins</name>
+                </geometry>
+            </feed_control_zone>
+        </feed_rate_advanced>
+        <tool>
+            <external>02</external>
+        </tool>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>false</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_surf>pins</check_surf>
+            <strategy>retract_along_tool_axis</strategy>
+            <check_between_points>true</check_between_points>
+            <check_links_collide>true</check_links_collide>
+            <tolerance>0.01</tolerance>
+            <thickness>0</thickness>
+            <clearance_shaft>0</clearance_shaft>
+            <clearance_arbor>0</clearance_arbor>
+            <clearance_holder>0</clearance_holder>
+       </gouge_check>
+       <gouge_check>
+            <status>true</status>
+            <check_flute>false</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_arbor>false</check_arbor>
+            <check_holder>true</check_holder>
+            <check_surf>coping</check_surf>
+            <check_surf>drops</check_surf>
+            <check_surf>pins</check_surf>
+            <strategy>leave_out_points</strategy>
+            <check_between_points>true</check_between_points>
+       </gouge_check>
+        <!-- general parameters -->
+        <cut_tolerance>0.01</cut_tolerance>
+        <offset>0.0</offset>
+        <extrude_mesh>
+            <type>linear_extrude</type>
+            <name>flat_mesh</name>
+            <curve_3d>
+                <name>extrude_curve</name>
+            </curve_3d>
+            <extrude_direction y="0" z="0" x="1"/>
+            <project_direction y="0" z="1" x="0"/>
+            <positive_distance>10</positive_distance>
+            <negative_distance>10</negative_distance>
+        </extrude_mesh>
+        <mach_surf>
+            <name>flat_mesh</name>
+            <move>New_wings_occlusal_min_vert_z-0.7</move>
+            <avoid_vertical_walls>true</avoid_vertical_walls>
+            <containment_2d_tolerance>0.01</containment_2d_tolerance>
+            <containment>
+                <name>prof_a</name>
+                <offset>-0.7</offset>
+                <hole>true</hole>
+            </containment>
+            <containment>
+                <name>prof_a</name>
+                <offset>40</offset>
+                <hole>false</hole>
+            </containment>
+        </mach_surf>
+		<!--
+       	<mach_surf>
+			<name>New_wings_occlusal</name>
+			<move>-1.00</move>
+		</mach_surf>
+		-->
+        <mach_surf>
+            <name>coping</name>
+        </mach_surf>
+        <mach_surf>
+            <name>pins</name>
+        </mach_surf>
+        <machining_direction y="0" z="1" x="0"/>
+        <tool_direction y="0" z="1" x="0"/>
+        <pattern>
+            <manual_curve>
+                <name>extrude_curve</name>
+                <point y="blank_min_vert_y-4" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x"/>
+                <point y="pins_max_vert_y+2" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x"/>
+            </manual_curve>
+            <hsm_cuts_only>true</hsm_cuts_only>
+            <high_speed_mode>true</high_speed_mode>
+            <hsm_cc_up_scale_factor>2.000</hsm_cc_up_scale_factor>
+            <hsm_cc_down_scale_factor>1.4000</hsm_cc_down_scale_factor>
+            <hsm_force_flowing_value>4</hsm_force_flowing_value>
+            <hsm_project_auto_generate>bottom</hsm_project_auto_generate>
+            <hsm_is_collapse_only_from_drive_curve>true</hsm_is_collapse_only_from_drive_curve>
+            <hsm_filter_length_factor>1.5</hsm_filter_length_factor>
+            <hsm_pin_start_y>coping_max_vert_y-0.1</hsm_pin_start_y>
+            <hsm_pin_stepover>0.04</hsm_pin_stepover>
+            <type>ConstantCusp</type>
+            <stepover>0.055</stepover>
+            <start_point>
+                <selection_type>use_none</selection_type>
+                <shift_value>0.055</shift_value>
+            </start_point>
+            <manual_curve>
+                <name>containment_curve2</name>
+                <point y="coping_max_vert_y+0.80" z="0" x="blank_max_vert_x+4"/>
+                <point y="coping_max_vert_y+50" z="0" x="blank_max_vert_x+4"/>
+                <point y="coping_max_vert_y+50" z="0" x="blank_min_vert_x-4"/>
+                <point y="coping_max_vert_y+0.80" z="0" x="blank_min_vert_x-4"/>
+                <point y="coping_max_vert_y+0.80" z="0" x="blank_max_vert_x+4"/>
+            </manual_curve>
+            <containment>
+                <name>containment_curve2</name>
+                <hole>true</hole>
+            </containment>
+
+            <manual_curve>
+            <name>machining_area</name>
+                <point x="blank_max_vert_x+0.9" y="blank_min_vert_y-1.1" z="0"/>
+                <point x="blank_min_vert_x-0.9" y="blank_min_vert_y-1.1" z="0"/>
+                <point x="blank_min_vert_x-0.9" y="coping_min_vert_y-0.7" z="0"/>
+                <point x="blank_max_vert_x+0.9" y="coping_min_vert_y-0.7" z="0"/>
+                <point x="blank_max_vert_x+0.9" y="blank_min_vert_y-1.1" z="0"/>
+            </manual_curve>
+            <containment>
+                <name>machining_area</name>
+                <offset>0.0</offset>
+                <hole>false</hole>
+            </containment>
+            <cut_order>standard</cut_order>
+            <cut_method>zigzag</cut_method>
+            <!--<research_param value="950" name="MaxFeedRateAlongX"/> -->
+            <!--<research_param value="950" name="MaxFeedRateAlongZ"/> -->
+            <!--<research_param value="900" name="MaxFeedRateAlongY"/> -->
+            <!--<one_way_dir>conventional</one_way_dir>-->
+        </pattern>
+        <!-- links parameters -->
+        <link>
+            <distances>
+                <clearance_area>
+					<height>blank_max_mach+4</height>
+					<direction y="0" z="1" x="0"/>
+                </clearance_area>
+                <rapid>10</rapid>
+                <feed>0.2</feed>
+                <air>0.5</air>
+            </distances>
+            <first_entry>
+                <type>clearance_area</type>
+            </first_entry>
+            <last_exit>
+                <type>clearance_area</type>
+            </last_exit>
+            <gaps_along_cut>
+                <small>
+                    <type>direct</type>
+                </small>
+                <large>
+                    <type>follow_surfaces</type>
+                </large>
+                <size>3</size>
+            </gaps_along_cut>
+            <links_between_slice>
+                <small>
+                    <type>follow_surfaces</type>
+                </small>
+                <large>
+                    <type>clearance_area</type>
+                </large>
+                <size>3</size>
+            </links_between_slice>
+            <links_between_pass>
+                <small>
+                    <type>direct</type>
+                </small>
+                <large>
+					<type>clearance_area</type>
+                </large>
+                <size>3</size>
+            </links_between_pass>
+        </link>
+        <tool_axis>&#xd;&#xd;&#xd;
+      -&#xd;&#xd;&#xd;
+        <out_type>3axis</out_type>
+        </tool_axis>
+        <spindle_speed>30000</spindle_speed>
+    </cycle>
+	
+	<cycle name="Roughing Occlusal side linear HSM">
+        <skip_nc>false</skip_nc>
+        <variable value="4" name="post_settings_id"/>
+        <variable value="0" name="IsT1T3Side"/>
+        <variable name="CoolantIsT1T4" value="0"/>
+        <post_process_only>false</post_process_only>
+        <variable name="WingsCreatorVersion" value="2"/>
+        <wing>
+            <width>6</width>
+            <inside_offset>0.95</inside_offset>
+            <tolerance>0.01</tolerance>
+            <silhouette_tool_diameter>4</silhouette_tool_diameter>
+            <wing_tool>
+                <external>02</external>
+            </wing_tool>
+            <main_mesh>coping</main_mesh>
+            <pins_mesh>pins</pins_mesh>
+            <top_direction y="0" z="1" x="0"/>
+            <wings_mesh_name>New_wings_occlusal</wings_mesh_name>
+            <bottom_external>true</bottom_external>
+        </wing>
+        <rates>
+            <feed>1035</feed>
+            <plunge>800</plunge>
+            <retract>800</retract>
+        </rates>
+        <feed_rate_advanced>
+            <use_rapid_feed>true</use_rapid_feed>
+            <rapid_feed_rate>800</rapid_feed_rate>
+            <use_feed_control_zone>true</use_feed_control_zone>
+            <feed_control_zone>
+                <offset>0.3</offset>
+                <inside_feed_rate_percentage>75</inside_feed_rate_percentage>
+                <outside_feed_rate_percentage>100</outside_feed_rate_percentage>
+                <geometry>
+                    <name>pins</name>
+                </geometry>
+            </feed_control_zone>
+        </feed_rate_advanced>
+        <tool>
+            <external>02</external>
+        </tool>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>false</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_surf>pins</check_surf>
+            <strategy>retract_along_tool_axis</strategy>
+            <check_between_points>true</check_between_points>
+            <check_links_collide>true</check_links_collide>
+            <tolerance>0.01</tolerance>
+            <thickness>0</thickness>
+            <clearance_shaft>0</clearance_shaft>
+            <clearance_arbor>0</clearance_arbor>
+            <clearance_holder>0</clearance_holder>
+		</gouge_check>
+		<gouge_check>
+			<status>true</status>
+			<check_flute>false</check_flute>
+			<check_shaft>true</check_shaft>
+			<check_arbor>false</check_arbor>
+			<check_holder>true</check_holder>
+			<check_surf>coping</check_surf>
+			<check_surf>drops</check_surf>
+			<check_surf>pins</check_surf>
+			<strategy>leave_out_points</strategy>
+			<check_between_points>true</check_between_points>
+		</gouge_check>
+        <!-- general parameters -->
+        <cut_tolerance>0.005</cut_tolerance>
+        <offset>0.0</offset>
+        <extrude_mesh>
+            <type>linear_extrude</type>
+            <name>flat_mesh</name>
+            <curve_3d>
+                <name>extrude_curve</name>
+            </curve_3d>
+            <extrude_direction y="0" z="0" x="1"/>
+            <project_direction y="0" z="1" x="0"/>
+            <positive_distance>10</positive_distance>
+            <negative_distance>10</negative_distance>
+        </extrude_mesh>
+        <!--<mach_surf>
+            <name>flat_mesh</name>
+            <move>New_wings_occlusal_min_vert_z-1.0</move>
+            <avoid_vertical_walls>true</avoid_vertical_walls>
+            <containment_2d_tolerance>0.01</containment_2d_tolerance>
+            <containment>
+                <name>prof_a</name>
+                <offset>-0.7</offset>
+                <hole>true</hole>
+            </containment>
+            <containment>
+                <name>prof_a</name>
+                <offset>40</offset>
+                <hole>false</hole>
+            </containment>
+        </mach_surf>-->
+       	 <mach_surf>
+			<name>New_wings_occlusal</name>
+			<move>-1.05</move>
+		</mach_surf>
+        <mach_surf>
+            <name>coping</name>
+        </mach_surf>
+        <mach_surf>
+            <name>pins</name>
+        </mach_surf>
+        <machining_direction y="0" z="1" x="0"/>
+        <tool_direction y="0" z="1" x="0"/>
+        <pattern>
+            <manual_curve>
+                <name>extrude_curve</name>
+                <point y="blank_min_vert_y-4" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x"/>
+                <point y="pins_max_vert_y+2" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x"/>
+            </manual_curve>
+            <hsm_cuts_only>true</hsm_cuts_only>
+            <high_speed_mode>true</high_speed_mode>
+            <hsm_cc_up_scale_factor>1.500</hsm_cc_up_scale_factor>
+            <hsm_cc_down_scale_factor>1.000</hsm_cc_down_scale_factor>
+            <hsm_force_flowing_value>4</hsm_force_flowing_value>
+            <hsm_project_auto_generate>bottom</hsm_project_auto_generate>
+            <hsm_is_collapse_only_from_drive_curve>true</hsm_is_collapse_only_from_drive_curve>
+            <hsm_filter_length_factor>1.5</hsm_filter_length_factor>
+            <hsm_pin_start_y>coping_max_vert_y</hsm_pin_start_y>
+            <hsm_pin_stepover>0.04</hsm_pin_stepover>
+            <type>ConstantCusp</type>
+            <stepover>0.05</stepover>
+            <start_point>
+                <selection_type>use_none</selection_type>
+                <shift_value>0.05</shift_value>
+            </start_point>
+            <manual_curve>
+                <name>containment_curve2</name>
+                <point y="coping_max_vert_y-0.8" z="0" x="blank_max_vert_x+4"/>
+                <point y="coping_max_vert_y+50" z="0" x="blank_max_vert_x+4"/>
+                <point y="coping_max_vert_y+50" z="0" x="blank_min_vert_x-4"/>
+                <point y="coping_max_vert_y-0.8" z="0" x="blank_min_vert_x-4"/>
+                <point y="coping_max_vert_y-0.8" z="0" x="blank_max_vert_x+4"/>
+            </manual_curve>
+            <containment>
+                <name>containment_curve2</name>
+                <hole>true</hole>
+            </containment>
+			
+            <manual_curve>
+            <name>machining_area</name>
+                <point x="coping_max_vert_x+1.00" y="coping_min_vert_y-0.7" z="0"/>
+                <point x="coping_min_vert_x-1.00" y="coping_min_vert_y-0.7" z="0"/>
+                <point x="coping_min_vert_x-1.00" y="blank_max_vert_y+5" z="0"/>
+                <point x="coping_max_vert_x+1.00" y="blank_max_vert_y+5" z="0"/>
+                <point x="coping_max_vert_x+1.00" y="coping_min_vert_y-0.7" z="0"/>
+            </manual_curve>
+            <containment>
+                <name>machining_area</name>
+                <offset>0.0</offset>
+                <hole>false</hole>
+            </containment>
+			<!--
+			<containment>
+				<name>prof_a</name>
+				<offset>0.055</offset>
+				<hole>false</hole>
+			</containment>
+			-->
+      
+            <cut_order>standard</cut_order>
+            <cut_method>zigzag</cut_method>
+            <!-- <research_param value="900" name="MaxFeedRateAlongX"/> -->
+            <research_param value="900" name="MaxFeedRateAlongZ"/>
+            <!-- <research_param value="900" name="MaxFeedRateAlongY"/> -->
+            <!--<one_way_dir>conventional</one_way_dir>-->
+        </pattern>
+        <!-- links parameters -->
+        <link>
+            <distances>
+                <clearance_area>
+					<height>blank_max_mach+5.0</height>
+					<direction y="0" z="1" x="0"/>
+                </clearance_area>
+                <rapid>10</rapid>
+                <feed>0.2</feed>
+                <air>0.5</air>
+            </distances>
+            <first_entry>
+                <type>clearance_area</type>
+            </first_entry>
+            <last_exit>
+                <type>clearance_area</type>
+            </last_exit>
+            <gaps_along_cut>
+                <small>
+					<type>direct</type>
+                </small>
+                <large>
+					<type>follow_surfaces</type>
+                </large>
+                <size>3</size>
+            </gaps_along_cut>
+            <links_between_slice>
+                <small>
+					<type>follow_surfaces</type>
+                </small>
+                <large>
+					<type>clearance_area</type>
+                </large>
+                <size>3</size>
+            </links_between_slice>
+            <links_between_pass>
+                <small>
+					<type>direct</type>
+                </small>
+                <large>
+					<type>clearance_area</type>
+                </large>
+                <size>3</size>
+            </links_between_pass>
+        </link>
+        <tool_axis>&#xd;&#xd;&#xd;
+      -&#xd;&#xd;&#xd;
+        <out_type>3axis</out_type>
+        </tool_axis>
+        <spindle_speed>30000</spindle_speed>
+    </cycle>
+	
+	
+     
+    
+    <cycle name="Fissuren_finish">
+        <skip_nc>false</skip_nc>
+        <post_process_only>false</post_process_only>
+        <variable value="1" name="post_settings_id"/>
+        <variable value="1" name="IsT1T3Side"/>
+        <variable name="CoolantIsT1T4" value="0"/>
+        <rates>
+            <feed>270</feed>
+            <plunge>200</plunge>
+            <retract>270</retract>
+        </rates>
+        <feed_rate_advanced>
+            <use_rapid_feed>true</use_rapid_feed>
+            <rapid_feed_rate>270</rapid_feed_rate>
+        </feed_rate_advanced>
+        <tool>
+            <external>06</external>
+        </tool>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>true</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_surf>pins</check_surf>
+            <strategy>retract_along_tool_axis</strategy>
+            <check_between_points>true</check_between_points>
+            <check_links_collide>true</check_links_collide>
+            <check_links_containment>true</check_links_containment>
+            <tolerance>0.01</tolerance>
+            <thickness>0</thickness>
+            <clearance_shaft>0</clearance_shaft>
+            <clearance_arbor>0</clearance_arbor>
+            <clearance_holder>0</clearance_holder>
+        </gouge_check>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>true</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_arbor>false</check_arbor>
+            <check_holder>true</check_holder>
+            <check_surf>coping</check_surf>
+            <check_surf>drops</check_surf>
+            <check_surf>pins</check_surf>
+            <check_surf>blank_collcheck</check_surf>
+            <strategy>leave_out_points</strategy>
+            <check_between_points>true</check_between_points>
+        </gouge_check>
+        <mach_surf>
+            <name>coping</name>
+        </mach_surf>
+        <cut_tolerance>0.003</cut_tolerance>
+        <offset>0.05</offset>
+        <use_blank>false</use_blank>
+        <affect_stock>false</affect_stock>
+        <machining_direction y="0" z="1" x="0"/>
+        <tool_direction y="0" z="1" x="0"/>
+        <pattern>
+            <type>ConstantCusp</type>
+			<stepover>0.015</stepover>
+            <cut_order>standard</cut_order>
+            <cut_method>one_way</cut_method>
+            <one_way_dir>climb</one_way_dir>
+            <rest_finish>true</rest_finish>
+            <rest_finish_big_dia>1.33</rest_finish_big_dia>
+            <rest_finish_big_corner_radius>0.5</rest_finish_big_corner_radius>
+            <silhouette>true</silhouette>
+            
+            <silhouette_offset>-1.35</silhouette_offset>
+            <research_param value="200" name="MaxFeedRateAlongX"/>
+            <!--<research_param value="200" name="MaxFeedRateAlongY"/> -->
+            <research_param value="200" name="MaxFeedRateAlongZ"/>
+        </pattern>
+        <link>
+            <distances>
+                <clearance_area>
+					<height>blank_max_mach+5</height>
+					<direction y="0" z="1" x="0"/>
+                </clearance_area>
+                <rapid>10</rapid>
+                <feed>0.2</feed>
+                <air>0.5</air>
+            </distances>
+            <first_entry>
+                <type>clearance_area</type>
+                <lead_in>
+					<type>vertical_tang_arc</type>
+					<arc_sweep>80</arc_sweep>
+					<arc_diameter>80</arc_diameter>
+					<feedrate>40</feedrate>
+				</lead_in>
+            </first_entry>
+            <last_exit>
+                <type>clearance_area</type>
+            </last_exit>
+            <gaps_along_cut>
+                <small>
+                    <type>follow_surfaces</type>
+	
+                </small>
+                <large>
+                    <type>clearance_area</type>
+	                <lead_in>
+						<type>vertical_tang_arc</type>
+						<arc_sweep>80</arc_sweep>
+						<arc_diameter>80</arc_diameter>
+						<feedrate>40</feedrate>
+					</lead_in>
+                </large>
+                <size>3</size>
+            </gaps_along_cut>
+            <links_between_slice>
+                <small>
+                    <type>follow_surfaces</type>
+				
+                </small>
+                <large>
+                    <type>clearance_area</type>
+	                <lead_in>
+						<type>vertical_tang_arc</type>
+						<arc_sweep>80</arc_sweep>
+						<arc_diameter>80</arc_diameter>
+						<feedrate>40</feedrate>
+					</lead_in>
+                </large>
+                <size>3</size>
+            </links_between_slice>
+            <links_between_pass>
+                <small>
+                    <type>feed_distance</type>
+					<lead_in>
+						<type>vertical_tang_arc</type>
+						<arc_sweep>50</arc_sweep>
+						<arc_diameter>50</arc_diameter>
+						<feedrate>40</feedrate>
+					</lead_in>
+                </small>
+                <large>
+                    <type>clearance_area</type>
+	                <lead_in>
+						<type>vertical_tang_arc</type>
+						<arc_sweep>80</arc_sweep>
+						<arc_diameter>80</arc_diameter>
+						<feedrate>40</feedrate>
+					</lead_in>
+                </large>
+                <size>3</size>
+            </links_between_pass>
+        </link>
+        <tool_axis>
+            <out_type>3axis</out_type>
+        </tool_axis>
+        <spindle_speed>30000</spindle_speed>
+    </cycle>
+	
+    <cycle name="Roughing Occlusal PIN side linear HSM">
+        <skip_nc>false</skip_nc>
+        <variable value="4" name="post_settings_id"/>
+        <variable value="0" name="IsT1T3Side"/>
+        <variable name="CoolantIsT1T4" value="0"/>
+        <post_process_only>false</post_process_only>
+        <variable name="WingsCreatorVersion" value="2"/>
+        <wing>
+            <width>6</width>
+            <inside_offset>0.95</inside_offset>
+            <tolerance>0.01</tolerance>
+            <silhouette_tool_diameter>4</silhouette_tool_diameter>
+            <wing_tool>
+                <external>02</external>
+            </wing_tool>
+            <main_mesh>coping</main_mesh>
+            <pins_mesh>pins</pins_mesh>
+            <top_direction y="0" z="1" x="0"/>
+            <wings_mesh_name>New_wings_occlusal</wings_mesh_name>
+            <bottom_external>true</bottom_external>
+        </wing>
+        <rates>
+            <feed>1050</feed>
+            <plunge>800</plunge>
+            <retract>800</retract>
+        </rates>
+        <feed_rate_advanced>
+            <use_rapid_feed>true</use_rapid_feed>
+            <rapid_feed_rate>800</rapid_feed_rate>
+            <use_feed_control_zone>true</use_feed_control_zone>
+            <feed_control_zone>
+                <offset>0.3</offset>
+                <inside_feed_rate_percentage>70</inside_feed_rate_percentage>
+                <outside_feed_rate_percentage>100</outside_feed_rate_percentage>
+                <geometry>
+					<name>pins</name>
+                </geometry>
+            </feed_control_zone>
+        </feed_rate_advanced>
+        <tool>
+            <external>02</external>
+        </tool>
+        <gouge_check>
+            <status>true</status>
+            <check_flute>false</check_flute>
+            <check_shaft>true</check_shaft>
+            <check_surf>pins</check_surf>
+            <strategy>retract_along_tool_axis</strategy>
+            <check_between_points>true</check_between_points>
+            <check_links_collide>true</check_links_collide>
+            <tolerance>0.01</tolerance>
+            <thickness>0</thickness>
+            <clearance_shaft>0</clearance_shaft>
+            <clearance_arbor>0</clearance_arbor>
+            <clearance_holder>0</clearance_holder>
+		</gouge_check>
+		<gouge_check>
+			<status>true</status>
+			<check_flute>false</check_flute>
+			<check_shaft>true</check_shaft>
+			<check_arbor>false</check_arbor>
+			<check_holder>true</check_holder>
+			<check_surf>coping</check_surf>
+			<check_surf>drops</check_surf>
+			<check_surf>pins</check_surf>
+			<strategy>leave_out_points</strategy>
+			<check_between_points>true</check_between_points>
+		</gouge_check>
+        <!-- general parameters -->
+        <cut_tolerance>0.005</cut_tolerance>
+        <offset>0.0</offset>
+        <extrude_mesh>
+            <type>linear_extrude</type>
+            <name>flat_mesh</name>
+            <curve_3d>
+                <name>extrude_curve</name>
+            </curve_3d>
+            <extrude_direction y="0" z="0" x="1"/>
+            <project_direction y="0" z="1" x="0"/>
+            <positive_distance>10</positive_distance>
+            <negative_distance>10</negative_distance>
+        </extrude_mesh>
+        <!--<mach_surf>
+            <name>flat_mesh</name>
+            <move>New_wings_occlusal_min_vert_z-1.0</move>
+            <avoid_vertical_walls>true</avoid_vertical_walls>
+            <containment_2d_tolerance>0.01</containment_2d_tolerance>
+            <containment>
+                <name>prof_a</name>
+                <offset>-0.7</offset>
+                <hole>true</hole>
+            </containment>
+            <containment>
+                <name>prof_a</name>
+                <offset>40</offset>
+                <hole>false</hole>
+            </containment>
+        </mach_surf>-->
+       	 <mach_surf>
+			<name>New_wings_occlusal</name>
+			<move>-1.15</move>
+		</mach_surf>
+        <mach_surf>
+            <name>coping</name>
+        </mach_surf>
+        <mach_surf>
+            <name>pins</name>
+        </mach_surf>
+        <machining_direction y="0" z="1" x="0"/>
+        <tool_direction y="0" z="1" x="0"/>
+        <pattern>
+            <manual_curve>
+                <name>extrude_curve</name>
+                <point y="blank_min_vert_y-4" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x"/>
+                <point y="pins_max_vert_y+2" z="0" x="blank_max_vert_x-0.5*blank_vert_delta_x"/>
+            </manual_curve>
+            <hsm_cuts_only>true</hsm_cuts_only>
+            <high_speed_mode>true</high_speed_mode>
+            <hsm_cc_up_scale_factor>2.000</hsm_cc_up_scale_factor>
+            <hsm_cc_down_scale_factor>1.2000</hsm_cc_down_scale_factor>
+            <hsm_force_flowing_value>4</hsm_force_flowing_value>
+            <hsm_project_auto_generate>bottom</hsm_project_auto_generate>
+            <hsm_is_collapse_only_from_drive_curve>true</hsm_is_collapse_only_from_drive_curve>
+            <hsm_filter_length_factor>1.5</hsm_filter_length_factor>
+            <hsm_pin_start_y>coping_max_vert_y-1.0</hsm_pin_start_y>
+            <hsm_pin_stepover>0.04</hsm_pin_stepover>
+            <type>ConstantCusp</type>
+            <stepover>0.04</stepover>
+            <start_point>
+                <selection_type>use_none</selection_type>
+                <shift_value>0.04</shift_value>
+            </start_point>
+            <manual_curve>
+                <name>containment_curve2</name>
+                <point y="coping_max_vert_y+0.8" z="0" x="blank_max_vert_x+4"/>
+                <point y="coping_max_vert_y+50" z="0" x="blank_max_vert_x+4"/>
+                <point y="coping_max_vert_y+50" z="0" x="blank_min_vert_x-4"/>
+                <point y="coping_max_vert_y+0.8" z="0" x="blank_min_vert_x-4"/>
+                <point y="coping_max_vert_y+0.8" z="0" x="blank_max_vert_x+4"/>
+            </manual_curve>
+            <containment>
+                <name>containment_curve2</name>
+                <hole>true</hole>
+            </containment>
+			
+            <manual_curve>
+            <name>machining_area</name>
+                <point x="blank_max_vert_x+0.9" y="coping_max_vert_y-0.85" z="0"/>
+                <point x="blank_min_vert_x-0.9" y="coping_max_vert_y-0.85" z="0"/>
+                <point x="blank_min_vert_x-0.9" y="blank_min_vert_y-1.0" z="0"/>
+                <point x="blank_max_vert_x+0.9" y="blank_min_vert_y-1.0" z="0"/>
+                <point x="blank_max_vert_x+0.9" y="coping_max_vert_y-0.85" z="0"/>
+            </manual_curve>
+            <containment>
+                <name>machining_area</name>
+                <offset>0.0</offset>
+                <hole>true</hole>
+            </containment>
+			
+			<containment>
+				<name>prof_a</name>
+				<offset>0.1</offset>
+				<hole>false</hole>
+			</containment>
+			
+      
+            <cut_order>standard</cut_order>
+            <cut_method>zigzag</cut_method>
+            <!-- <research_param value="950" name="MaxFeedRateAlongX"/> -->
+            <research_param value="920" name="MaxFeedRateAlongZ"/>
+            <!-- <research_param value="900" name="MaxFeedRateAlongY"/> -->
+            <!--<one_way_dir>conventional</one_way_dir>-->
+        </pattern>
+        <!-- links parameters -->
+        <link>
+            <distances>
+                <clearance_area>
+					<height>blank_max_mach+5.0</height>
+					<direction y="0" z="1" x="0"/>
+                </clearance_area>
+                <rapid>10</rapid>
+                <feed>0.2</feed>
+                <air>0.5</air>
+            </distances>
+            <first_entry>
+                <type>clearance_area</type>
+            </first_entry>
+            <last_exit>
+                <type>clearance_area</type>
+            </last_exit>
+            <gaps_along_cut>
+                <small>
+					<type>direct</type>
+                </small>
+                <large>
+					<type>follow_surfaces</type>
+                </large>
+                <size>3</size>
+            </gaps_along_cut>
+            <links_between_slice>
+                <small>
+					<type>follow_surfaces</type>
+                </small>
+                <large>
+					<type>clearance_area</type>
+                </large>
+                <size>3</size>
+            </links_between_slice>
+            <links_between_pass>
+                <small>
+					<type>direct</type>
+                </small>
+                <large>
+					<type>clearance_area</type>
+                </large>
+                <size>3</size>
+            </links_between_pass>
+        </link>
+        <tool_axis>&#xd;&#xd;&#xd;
+      -&#xd;&#xd;&#xd;
+        <out_type>3axis</out_type>
+        </tool_axis>
+        <spindle_speed>30000</spindle_speed>
+    </cycle>
+	
+</script>

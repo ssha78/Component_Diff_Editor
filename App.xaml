@@ -1,0 +1,11 @@
+<Application x:Class="ComponentDiffEditor.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:ComponentDiffEditor.Converters"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:StringToDocumentConverter x:Key="StringToDocumentConverter"/>
+        <converters:SimilarityToColorConverter x:Key="SimilarityToColorConverter"/>
+    </Application.Resources>
+</Application>
